@@ -10,7 +10,7 @@ class LoginModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       Modular.initialRoute,
-      child: (_, __) => LoginPage(),
+      child: (_, __) => const LoginPage(),
     ),
   ];
 }
