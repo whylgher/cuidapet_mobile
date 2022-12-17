@@ -12,9 +12,7 @@ class _LoginRegisterButtons extends StatelessWidget {
       alignment: WrapAlignment.center,
       children: [
         RoundedButtonWithIcon(
-          onTap: () {
-            Messages.info('Messagem de info');
-          },
+          onTap: () {},
           width: .42.sw,
           color: const Color(0xFF4267B3),
           icon: CuidapetIcons.facebook,
