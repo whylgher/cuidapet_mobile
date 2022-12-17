@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "392016883769",
+    "project_id": "cuidapet-curso-ede25",
+    "storage_bucket": "cuidapet-curso-ede25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392016883769:android:da8f00099c8eec8c8fdde8",
+        "android_client_info": {
+          "package_name": "br.com.academiadoflutter.cuidapet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "392016883769-lov4d0m7bhs2tqp7h005gmhteuhvheq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8T7UGMpLIBOcLVmCneHnskS0XxtHFDco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "392016883769-lov4d0m7bhs2tqp7h005gmhteuhvheq5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
