@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cuidapet/app/repositories/user/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -12,8 +11,8 @@ class UserServiceImpl implements UserService {
   final AppLogger _log;
 
   UserServiceImpl({
-    required AppLogger log,
     required UserRepository userRepository,
+    required AppLogger log,
   })  : _userRepository = userRepository,
         _log = log;
 

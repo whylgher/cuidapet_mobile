@@ -25,9 +25,7 @@ class Loader {
   }
 
   static void hide() {
-    if (_open) {
-      _open = false;
-      _entry?.remove();
-    }
+    _open = false;
+    _entry?.remove();
   }
 }

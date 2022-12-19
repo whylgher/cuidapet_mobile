@@ -27,6 +27,8 @@ abstract class RegisterControllerBase with Store {
       Loader.show();
       await _userService.register(email, password);
       Loader.hide();
+      Messages.info(
+          'Email de confirmação enviado. Olhe sua caixa de entrada.(Obs.: Pode estar em sua lixeira ou Spam.');
     } on UserExistsException {
       Loader.hide();
       Messages.alert('Email já utilizado');
