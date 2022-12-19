@@ -19,7 +19,7 @@ abstract class LoginControllerBase with Store {
         _log = log;
 
   Future<void> login(String login, String password) async {
-    Loader.show;
+    Loader.show();
     print(login);
     print(password);
     await Future.delayed(const Duration(seconds: 2));
