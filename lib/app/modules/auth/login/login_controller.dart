@@ -1,10 +1,10 @@
-import 'package:cuidapet/app/core/exception/failure.dart';
-import 'package:cuidapet/app/core/ui/widgets/loader.dart';
-import 'package:cuidapet/app/core/ui/widgets/messages.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../core/exception/failure.dart';
 import '../../../core/exception/user_not_exists_exception.dart';
 import '../../../core/logger/app_logger.dart';
+import '../../../core/ui/widgets/loader.dart';
+import '../../../core/ui/widgets/messages.dart';
 import '../../../services/user/user_service.dart';
 
 part 'login_controller.g.dart';

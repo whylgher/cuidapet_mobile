@@ -1,10 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, unused_field
-import 'package:cuidapet/app/core/exception/user_exists_exception.dart';
-import 'package:cuidapet/app/core/ui/widgets/messages.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../core/exception/user_exists_exception.dart';
 import '../../../../core/logger/app_logger.dart';
 import '../../../../core/ui/widgets/loader.dart';
+import '../../../../core/ui/widgets/messages.dart';
 import '../../../../services/user/user_service.dart';
 
 part 'register_controller.g.dart';

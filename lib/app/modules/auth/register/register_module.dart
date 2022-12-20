@@ -1,6 +1,6 @@
-import 'package:cuidapet/app/modules/auth/register/controller/register_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../modules/auth/register/controller/register_controller.dart';
 import 'register_page.dart';
 
 class RegisterModule extends Module {

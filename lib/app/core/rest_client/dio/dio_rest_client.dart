@@ -1,6 +1,6 @@
-import 'package:cuidapet/app/core/rest_client/rest_client_response.dart';
 import 'package:dio/dio.dart';
 
+import '../../../core/rest_client/rest_client_response.dart';
 import '../../helpers/constants.dart';
 import '../../helpers/environments.dart';
 import '../rest_client.dart';
