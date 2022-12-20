@@ -1,4 +1,6 @@
+import 'package:cuidapet/app/core/rest_client/rest_client.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import './user_service.dart';
 import '../../core/exception/failure.dart';
@@ -73,9 +75,7 @@ class UserServiceImpl implements UserService {
         final accessToken = await _userRepository.login(email, password);
 
         await _saveAccessToken(accessToken);
-        final xx = await _localStorage
-            .read<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY);
-        print(xx);
+        Modular.get<RestClient>().auth().get('/auth/');
       } else {
         throw Failure(
             message:

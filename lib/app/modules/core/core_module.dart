@@ -13,12 +13,17 @@ class CoreModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => AuthStore(), export: true),
-    Bind.lazySingleton<RestClient>((i) => DioRestClient(), export: true),
     Bind.lazySingleton<AppLogger>((i) => AppLoggerImpl(), export: true),
     Bind.lazySingleton<LocalStorage>((i) => SharedPreferencesLocalStorageImpl(),
         export: true),
     Bind.lazySingleton<LocalSecureStorage>(
         (i) => FlutterSecureStorageLocalStorageImp(),
+        export: true),
+    Bind.lazySingleton<RestClient>(
+        (i) => DioRestClient(
+              localStorage: i(),
+              log: i(),
+            ),
         export: true),
   ];
 }
