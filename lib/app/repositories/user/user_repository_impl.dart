@@ -1,3 +1,8 @@
+import 'dart:io';
+
+import 'package:cuidapet/app/models/confirm_login_model.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 import './user_repository.dart';
 import '../../core/exception/failure.dart';
 import '../../core/exception/user_exists_exception.dart';
@@ -57,6 +62,26 @@ class UserRepositoryImpl implements UserRepository {
 
       throw Failure(
           message: 'Erro ao realizar login, tente novamente mais tarde.');
+    }
+  }
+
+  @override
+  Future<ConfirmLoginModel> confirmLogin() async {
+    try {
+      final deviceToken = await FirebaseMessaging.instance.getToken();
+
+      final result = await _restClient.auth().patch(
+        '/auth/confirm',
+        data: {
+          'ios_token': Platform.isIOS ? deviceToken : null,
+          'androind_token': Platform.isAndroid ? deviceToken : null,
+        },
+      );
+
+      return ConfirmLoginModel.fromMap(result.data);
+    } on RestClientException catch (e, s) {
+      _log.error('Erro ao confirmar login', e, s);
+      throw Failure(message: 'Erro ao confirmar login');
     }
   }
 }

@@ -13,13 +13,16 @@ class UserServiceImpl implements UserService {
   final UserRepository _userRepository;
   final AppLogger _log;
   final LocalStorage _localStorage;
+  final LocalSecureStorage _localSecureStore;
 
   UserServiceImpl({
     required UserRepository userRepository,
     required AppLogger log,
     required LocalStorage localStorage,
+    required LocalSecureStorage localSecureStorage,
   })  : _userRepository = userRepository,
         _localStorage = localStorage,
+        _localSecureStore = localSecureStorage,
         _log = log;
 
   @override
@@ -73,6 +76,7 @@ class UserServiceImpl implements UserService {
         final accessToken = await _userRepository.login(email, password);
 
         await _saveAccessToken(accessToken);
+        await _confirmLogin();
       } else {
         throw Failure(
             message:
@@ -86,4 +90,15 @@ class UserServiceImpl implements UserService {
 
   Future<void> _saveAccessToken(String accessToken) => _localStorage
       .write<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
+
+  Future<void> _confirmLogin() async {
+    final confirmLoginResultModel = await _userRepository.confirmLogin();
+    print('confirmLoginResultModel');
+    print(confirmLoginResultModel);
+
+    await _saveAccessToken(confirmLoginResultModel.accessToken);
+
+    await _localSecureStore.write(Constants.LOCAL_STORAGE_REFRESH_TOKEN_KEY,
+        confirmLoginResultModel.refreshToken);
+  }
 }
