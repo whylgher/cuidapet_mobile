@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../core/rest_client/rest_client.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,11 +13,23 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
-      body: TextButton(
-        onPressed: () {
-          FirebaseAuth.instance.signOut();
-        },
-        child: Text('Logout'),
+      body: Column(
+        children: [
+          TextButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            child: const Text('Logout'),
+          ),
+          TextButton(
+            onPressed: () async {
+              final categoryResponse =
+                  await Modular.get<RestClient>().auth().get('/categories/');
+              print(categoryResponse);
+            },
+            child: const Text('Test Refresh token'),
+          ),
+        ],
       ),
     );
   }

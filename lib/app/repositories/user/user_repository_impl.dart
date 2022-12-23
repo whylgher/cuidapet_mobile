@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cuidapet/app/models/confirm_login_model.dart';
+import 'package:cuidapet/app/models/social_network_model.dart';
 import 'package:cuidapet/app/models/user_model.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -94,6 +95,33 @@ class UserRepositoryImpl implements UserRepository {
     } on RestClientException catch (e, s) {
       _log.error('Erro ao buscar dados do usuário logado', e, s);
       throw Failure(message: 'Erro ao buscar dados do usuário logado');
+    }
+  }
+
+  @override
+  Future<String> loginSocial(SocialNetworkModel model) async {
+    try {
+      final result = await _restClient.unAuth().post('/auth/', data: {
+        'login': model.email,
+        'social_login': true,
+        'avatar': model.avatar,
+        'social_type': model.type,
+        'social_key': model.id,
+        'supplier_user': false,
+      });
+
+      return result.data['access_token'];
+    } on RestClientException catch (e, s) {
+      if (e.statusCode == 403) {
+        throw Failure(
+            message:
+                'Usuário ou senha inválidos. Caso o erro persistir entre em contato com suporte.');
+      }
+
+      _log.error('Erro ao realizar login', e, s);
+
+      throw Failure(
+          message: 'Erro ao realizar login, tente novamente mais tarde.');
     }
   }
 }

@@ -9,6 +9,7 @@ import '../../helpers/environments.dart';
 import '../../logger/app_logger.dart';
 import '../rest_client.dart';
 import '../rest_client_exception.dart';
+import 'interceptors/auth_refresh_token_interceptor.dart';
 
 class DioRestClient implements RestClient {
   late final Dio _dio;
@@ -23,6 +24,7 @@ class DioRestClient implements RestClient {
 
   DioRestClient({
     required LocalStorage localStorage,
+    required LocalSecureStorage localSecureStorage,
     required AppLogger log,
     required AuthStore authStore,
     BaseOptions? baseOptions,
@@ -32,8 +34,14 @@ class DioRestClient implements RestClient {
       [
         AuthInterceptor(
           localStorage: localStorage,
-          log: log,
           authStore: authStore,
+        ),
+        AuthRefreshTokenInterceptor(
+          authStore: authStore,
+          localStorage: localStorage,
+          localSecureStorage: localSecureStorage,
+          restClient: this,
+          log: log,
         ),
         LogInterceptor(
           requestBody: true,
