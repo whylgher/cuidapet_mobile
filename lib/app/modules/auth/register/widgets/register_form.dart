@@ -7,12 +7,11 @@ class _RegisterForm extends StatefulWidget {
   State<_RegisterForm> createState() => _RegisterFormState();
 }
 
-class _RegisterFormState
-    // ignore: deprecated_member_use
-    extends ModularState<_RegisterForm, RegisterController> {
+class _RegisterFormState extends State<_RegisterForm> {
   final _formKey = GlobalKey<FormState>();
   final _loginEC = TextEditingController();
   final _passwordEC = TextEditingController();
+  final controller = Modular.get<RegisterController>();
 
   @override
   void dispose() {
