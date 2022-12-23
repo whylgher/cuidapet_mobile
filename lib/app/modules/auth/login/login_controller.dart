@@ -6,6 +6,7 @@ import '../../../core/exception/user_not_exists_exception.dart';
 import '../../../core/logger/app_logger.dart';
 import '../../../core/ui/widgets/loader.dart';
 import '../../../core/ui/widgets/messages.dart';
+import '../../../models/social_login_type.dart';
 import '../../../services/user/user_service.dart';
 
 part 'login_controller.g.dart';
@@ -38,6 +39,18 @@ abstract class LoginControllerBase with Store {
       _log.error(errorMessage);
       Loader.hide();
       Messages.alert(errorMessage);
+    }
+  }
+
+  Future<void> socialLogin(SocialLoginType socialLoginType) async {
+    try {
+      Loader.show();
+      await _userService.socialLogin(socialLoginType);
+      Loader.hide();
+    } on Failure catch (e, s) {
+      Loader.hide();
+      _log.error('Erro ao realizar login', e, s);
+      Messages.alert(e.message ?? 'Erro ao realizar login');
     }
   }
 }

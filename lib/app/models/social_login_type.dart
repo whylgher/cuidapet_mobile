@@ -1,0 +1,1 @@
+enum SocialLoginType { facebook, google }
