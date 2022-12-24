@@ -7,7 +7,6 @@ import '../../core/exception/failure.dart';
 class SocialRepositoryImpl implements SocialRepository {
   @override
   Future<SocialNetworkModel> facebookLogin() {
-    // TODO: implement facebookLogin
     throw UnimplementedError();
   }
 
