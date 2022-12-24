@@ -7,12 +7,12 @@ import '../../../models/user_model.dart';
 
 part 'auth_store.g.dart';
 
-class AuthStore = _AuthStoreBase with _$AuthStore;
+class AuthStore = AuthStoreBase with _$AuthStore;
 
-abstract class _AuthStoreBase with Store {
+abstract class AuthStoreBase with Store {
   final LocalStorage _localStorage;
 
-  _AuthStoreBase({required LocalStorage localStorage})
+  AuthStoreBase({required LocalStorage localStorage})
       : _localStorage = localStorage;
 
   @readonly

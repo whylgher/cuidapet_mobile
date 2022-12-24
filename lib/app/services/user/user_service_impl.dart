@@ -89,7 +89,7 @@ class UserServiceImpl implements UserService {
             message:
                 'Login não pode ser feito por email e password, por favor, utilize outro método, facebook ou google.');
       }
-    } on FirebaseAuthException catch (e, s) {
+    } on FirebaseAuthException catch (e) {
       _log.error('Usuário ou senha inválidos FirebaseAuthError: [{$e.code}]');
       throw Failure(message: 'Usuária ou senha inválidos!!!');
     }

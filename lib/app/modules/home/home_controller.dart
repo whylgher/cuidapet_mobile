@@ -5,9 +5,9 @@ import '../../core/life_cycle/controller_life_cycle.dart';
 
 part 'home_controller.g.dart';
 
-class HomeController = _HomeControllerBase with _$HomeController;
+class HomeController = HomeControllerBase with _$HomeController;
 
-abstract class _HomeControllerBase with Store, ControllerLifeCycle {
+abstract class HomeControllerBase with Store, ControllerLifeCycle {
   @override
   Future<void> onReady() async {
     await _hasRegisteredAddress();

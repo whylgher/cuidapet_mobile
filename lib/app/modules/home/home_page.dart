@@ -32,6 +32,7 @@ class _HomePageState extends PageLifeCycleState<HomeController, HomePage> {
             onPressed: () async {
               final categoryResponse =
                   await Modular.get<RestClient>().auth().get('/categories/');
+              // ignore: avoid_print
               print(categoryResponse);
             },
             child: const Text('Test Refresh token'),
