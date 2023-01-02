@@ -95,26 +95,6 @@ class UserServiceImpl implements UserService {
     }
   }
 
-  Future<void> _saveAccessToken(String accessToken) => _localStorage
-      .write<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
-
-  Future<void> _confirmLogin() async {
-    final confirmLoginResultModel = await _userRepository.confirmLogin();
-
-    await _saveAccessToken(confirmLoginResultModel.accessToken);
-
-    await _localSecureStore.write(Constants.LOCAL_STORAGE_REFRESH_TOKEN_KEY,
-        confirmLoginResultModel.refreshToken);
-  }
-
-  Future<void> _getUserData() async {
-    final userModel = await _userRepository.getUserLogged();
-    await _localStorage.write<String>(
-      Constants.LOCAL_STORAGE_USER_LOGGED_DATA,
-      userModel.toJson(),
-    );
-  }
-
   @override
   Future<void> socialLogin(SocialLoginType socialLoginType) async {
     try {
@@ -167,5 +147,25 @@ class UserServiceImpl implements UserService {
       case SocialLoginType.google:
         return 'google.com';
     }
+  }
+
+  Future<void> _saveAccessToken(String accessToken) => _localStorage
+      .write<String>(Constants.LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
+
+  Future<void> _confirmLogin() async {
+    final confirmLoginResultModel = await _userRepository.confirmLogin();
+
+    await _saveAccessToken(confirmLoginResultModel.accessToken);
+
+    await _localSecureStore.write(Constants.LOCAL_STORAGE_REFRESH_TOKEN_KEY,
+        confirmLoginResultModel.refreshToken);
+  }
+
+  Future<void> _getUserData() async {
+    final userModel = await _userRepository.getUserLogged();
+    await _localStorage.write<String>(
+      Constants.LOCAL_STORAGE_USER_LOGGED_DATA,
+      userModel.toJson(),
+    );
   }
 }
